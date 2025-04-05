@@ -62,6 +62,7 @@ export const createPetStatProgressBar = (statName, statColor, statCounter) => {
     
     return statDiv;
 }
+
 export const createPetActionButton = (action) => {
     const petActionButton = document.createElement('button');
     petActionButton.classList.add('bg-pink-300', 'rounded-md', 'px-5', 'py-2', 'text-sm/6', 'w-full', 'font-semibold', 'hover:bg-pink-400', 'cursor-pointer');
@@ -69,3 +70,89 @@ export const createPetActionButton = (action) => {
  
     return petActionButton;
 }
+
+export const petDataList = [
+{
+    id: 1,
+    petName: "Baby Dinosaurie",
+    petType: "Reptile",
+    petImage: "/assets/img/baby-dinosaur.svg"
+},
+{
+    id: 2,
+    petName: "Baby Kanin",
+    petType: "Mammal",
+    petImage: "/assets/img/baby-rabbit.svg"
+},
+{
+    id: 3,
+    petName: "Panda",
+    petType: "Mammal",
+    petImage: "/assets/img/panda.svg"
+},
+{
+    id: 4,
+    petName: "Chill Katt",
+    petType: "Mammal",
+    petImage: "/assets/img/chill-cat.svg"
+},
+{
+    id: 5,
+    petName: "Ko",
+    petType: "Mammal",
+    petImage: "/assets/img/cow.svg"
+},
+{
+    id: 6,
+    petName: "Krokodil",
+    petType: "Reptile",
+    petImage: "/assets/img/crocodile.svg"
+},
+{
+    id: 7,
+    petName: "Dinosaurie",
+    petType: "Reptile",
+    petImage: "/assets/img/dinosaur.svg"
+},
+{
+    id: 8,
+    petName: "Hund",
+    petType: "Mammal",
+    petImage: "/assets/img/dog.svg"
+},
+{
+    id: 9,
+    petName: "Örn",
+    petType: "Aves",
+    petImage: "/assets/img/eagle.svg"
+},
+{
+    id: 10,
+    petName: "Katt",
+    petType: "Mammal",
+    petImage: "/assets/img/cat.svg"
+},
+{
+    id: 11,
+    petName: "Lejon",
+    petType: "Mammal",
+    petImage: "/assets/img/lion.svg"
+},
+{
+    id: 12,
+    petName: "Pingvin",
+    petType: "Aves",
+    petImage: "/assets/img/penguin.svg"
+},
+{
+    id: 13,
+    petName: "Kanin",
+    petType: "Mammal",
+    petImage: "/assets/img/rabbit.svg"
+},
+{
+    id: 14,
+    petName: "Sköldpadda",
+    petType: "Reptile",
+    petImage: "/assets/img/turtle.svg"
+}];
