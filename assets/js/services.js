@@ -42,6 +42,7 @@ export const createPetCard = (pet) => {
     petContainerDiv.append(petMainBoxDiv);
     petListDiv.append(petContainerDiv);
 }
+
 export const createPetStatProgressBar = (statName, statColor, statCounter) => {
     const statDiv = document.createElement("div");
     
