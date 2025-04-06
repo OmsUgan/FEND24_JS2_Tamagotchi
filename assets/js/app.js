@@ -1,41 +1,40 @@
-import { petDataList } from "./services.js";
+import { Pet } from "./classes.js";
+import { renderPetSelect, myPets, maxPet, generateRandomUUID, createPetCard, petDataList } from "./services.js";
 
-const petSelect = document.getElementById("pet-select");
-const petImg = document.getElementById("pet-img");
-
-const renderPetSelect = () => {
-    petDataList.forEach(pet => {
-        const option = document.createElement("option");
-        option.text = pet.petName;
-        option.value = pet.id;
-        petSelect.append(option);
-    });
-}
+myPets;
 
 renderPetSelect();
 
-const renderPetPreview = () => {
-    const chooseButtonDiv = document.getElementById("choose-button");
+console.log(document.getElementById("adopt-pet"))
 
-    const chooseButton = document.createElement("button");
-    chooseButton.classList.add("bg-pink-300", "rounded-md", "px-3", "py-2", "text-sm/6", "w-full", "font-semibold", "hover:bg-pink-400", "cursor-pointer");
+document.getElementById("adopt-pet").addEventListener("click", () => {
+    const petId = Number(document.getElementById("pet-select").value);
+    const petName = document.getElementById("pet-name").value;
+    console.log(petId);
 
-    petSelect.addEventListener("change", event => {
-        const petId = Number(event.target.value);
-        const pet = petDataList.find(p => p.id === petId);
+    const pet = petDataList.find(p => p.id === petId);
 
-        petImg.src = pet.petImage;
+    if (petId === 0) {
+        alert("Du måste välja ett husdjur!")
+        return;
+    }
 
-        chooseButton.textContent = `Adoptera ${pet.petName}`;
-        chooseButton.value = pet.id;
-        chooseButtonDiv.append(chooseButton);
+    if (petName === "") {
+        alert("Du måste ange ett namn för ditt husdjur!")
+        return;
+    }
 
-        if(pet.id !== 15) {
-            petImg.classList.remove("animate__animated", "animate__bounce", "animate__repeat-2");
-        } else {
-            petImg.classList.add("h-50", "animate__animated", "animate__bounce", "animate__repeat-2");
-        }
-    })
-}
+    if (myPets.length >= maxPet) {
+        alert("Du har redan 4 husdjur!")
+        return;
+    }
 
-renderPetPreview();
+    console.log(myPets);
+
+    const newPet = new Pet(generateRandomUUID(), petName, pet.petType, pet.petImage);
+    myPets.push(newPet);
+    createPetCard(newPet);
+
+    document.getElementById("pet-name").value = "";
+    document.getElementById("pet-select").text = "";
+});
