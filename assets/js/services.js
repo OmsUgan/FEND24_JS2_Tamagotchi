@@ -156,4 +156,10 @@ export const petDataList = [
     petName: "Sköldpadda",
     petType: "Reptile",
     petImage: "/assets/img/turtle.svg"
+},
+{
+    id: 15,
+    petName: "Slumpmässig",
+    petType: "Random",
+    petImage: "/assets/img/egg.svg"
 }];

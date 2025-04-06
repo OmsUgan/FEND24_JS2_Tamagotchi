@@ -1,5 +1,5 @@
 export class Pet {
-    constructor(id, name, animalType, imageUrl) {
+    constructor(id, name, petType, imageUrl) {
         this.id = id;
         this.petName = name;
         this.petType = petType;
