@@ -36,9 +36,9 @@ export const createPetCard = (pet) => {
     const petStatsDiv = document.createElement("div");
     petStatsDiv.classList.add("flex", "flex-col", "space-y-5");
 
-    petStatsDiv.append(createPetStatProgressBar("Energy", getProgressBarColor(pet.petEnergy), pet.petEnergy));
-    petStatsDiv.append(createPetStatProgressBar("Fullhet", getProgressBarColor(pet.petFullness), pet.petFullness));
-    petStatsDiv.append(createPetStatProgressBar("Lycka", getProgressBarColor(pet.petHappiness), pet.petHappiness));
+    petStatsDiv.append(createPetStatProgressBar("Energy", getProgressBarColor(pet.petEnergy), pet.petEnergy, pet.id));
+    petStatsDiv.append(createPetStatProgressBar("Fullhet", getProgressBarColor(pet.petFullness), pet.petFullness, pet.id));
+    petStatsDiv.append(createPetStatProgressBar("Lycka", getProgressBarColor(pet.petHappiness), pet.petHappiness, pet.id));
     
     const petActionDiv = document.createElement("div");
     petActionDiv.classList.add("flex", "justify-center", "pt-5", "space-x-5");
@@ -58,17 +58,17 @@ export const createPetCard = (pet) => {
     petListDiv.append(petContainerDiv);
 }
 
-const getProgressBarColor = (statValue) => {
-    if (statValue >= 70) {
+export const getProgressBarColor = (statValue) => {
+    if (statValue >= 71) {
         return "bg-lime-400"; // Grön när värdet är mellan 100 och 70
-    } else if (statValue >= 30) {
+    } else if (statValue >= 36) {
         return "bg-yellow-400"; // Gul när värdet är mellan 70 och 30
     } else {
         return "bg-rose-400"; // Röd när värdet är mellan 30 och 0
     }
 }
 
-export const createPetStatProgressBar = (statName, statColor, statValue) => {
+export const createPetStatProgressBar = (statName, statColor, statValue, petId) => {
     const statDiv = document.createElement("div");
     
     const statNameText = document.createElement("p");
@@ -79,7 +79,8 @@ export const createPetStatProgressBar = (statName, statColor, statValue) => {
     progressBarDiv.classList.add("overflow-hidden", "rounded-full", "bg-gray-950", "w-full");
     
     const progressBar = document.createElement("div");
-    progressBar.classList.add("flex", "justify-center", "items-center", "h-4", "rounded-full", statColor, "font-semibold", "text-sm/6")
+    progressBar.classList.add("flex", "justify-center", "items-center", "h-4", "rounded-full", statColor, "font-semibold", "text-sm/6");
+    progressBar.id = `${petId}-${statName.toLowerCase()}`;
     progressBar.style.width = `${statValue}%`;
     progressBar.textContent = statValue;
     
@@ -88,7 +89,6 @@ export const createPetStatProgressBar = (statName, statColor, statValue) => {
     
     return statDiv;
 }
-
 
 export const createPetActionButton = (action) => {
     const petActionButton = document.createElement('button');

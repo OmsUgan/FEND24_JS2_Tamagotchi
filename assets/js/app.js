@@ -8,9 +8,14 @@ renderPetSelect();
 console.log(document.getElementById("adopt-pet"))
 
 document.getElementById("adopt-pet").addEventListener("click", () => {
-    const petId = Number(document.getElementById("pet-select").value);
+    let petId = Number(document.getElementById("pet-select").value);
     const petName = document.getElementById("pet-name").value;
     console.log(petId);
+
+    if (petId === 15) {
+        const randomPet = petDataList[Math.floor(Math.random() * 14)];
+        petId = randomPet.id;
+    }
 
     const pet = petDataList.find(p => p.id === petId);
 
@@ -25,7 +30,7 @@ document.getElementById("adopt-pet").addEventListener("click", () => {
     }
 
     if (myPets.length >= maxPet) {
-        alert("Du har redan 4 husdjur!")
+        alert("Du har redan 4 husdjur!");
         return;
     }
 
@@ -36,5 +41,5 @@ document.getElementById("adopt-pet").addEventListener("click", () => {
     createPetCard(newPet);
 
     document.getElementById("pet-name").value = "";
-    document.getElementById("pet-select").text = "";
+    document.getElementById("pet-select").selectedIndex = 0;
 });
