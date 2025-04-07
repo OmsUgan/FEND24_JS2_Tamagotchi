@@ -1,11 +1,9 @@
 import { Pet } from "./classes.js";
 import { renderPetSelect, myPets, maxPet, generateRandomUUID, createPetCard, petDataList } from "./services.js";
 
-myPets;
-
 renderPetSelect();
 
-console.log(document.getElementById("adopt-pet"))
+console.log(document.getElementById("adopt-pet"));
 
 document.getElementById("adopt-pet").addEventListener("click", () => {
     let petId = Number(document.getElementById("pet-select").value);
@@ -38,6 +36,13 @@ document.getElementById("adopt-pet").addEventListener("click", () => {
 
     const newPet = new Pet(generateRandomUUID(), petName, pet.petType, pet.petImage);
     myPets.push(newPet);
+
+    if (myPets.length > 0) {
+        document.getElementById("no-pets").style.display = "none";
+    } else {
+        document.getElementById("no-pets").style.display = "";
+    }
+
     createPetCard(newPet);
 
     document.getElementById("pet-name").value = "";
