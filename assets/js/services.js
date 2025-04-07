@@ -1,6 +1,12 @@
+import { Pet } from "./classes.js";
+
 export const maxPet = 4;
 export const startStats = 50;
+export const maxStats = 100;
 export let myPets = []; 
+
+export const noPetsCard = document.getElementById("no-pets");
+export const activityLogCard = document.getElementById("activity-log");
 
 export const generateRandomUUID = () => crypto.randomUUID();
 
@@ -9,6 +15,7 @@ export const createPetCard = (pet) => {
 
     const petContainerDiv = document.createElement("div");
     petContainerDiv.classList.add("overflow-hidden", "bg-white/10", "px-1.5", "py-1.5");
+    petContainerDiv.id = pet.id;
     
     const petMainBoxDiv = document.createElement("div");
     petMainBoxDiv.classList.add("overflow-hidden", "rounded-xl", "bg-gray-950/50");
@@ -60,9 +67,9 @@ export const createPetCard = (pet) => {
 
 export const getProgressBarColor = (statValue) => {
     if (statValue >= 71) {
-        return "bg-lime-400"; // Grön när värdet är mellan 100 och 70
+        return "bg-lime-400"; // Grön när värdet är mellan 100 och 70 (71)
     } else if (statValue >= 36) {
-        return "bg-yellow-400"; // Gul när värdet är mellan 70 och 30
+        return "bg-yellow-400"; // Gul när värdet är mellan 70 och 35 (36)
     } else {
         return "bg-rose-400"; // Röd när värdet är mellan 30 och 0
     }
@@ -127,6 +134,63 @@ export const renderPetSelect = () => {
         } else {
             petImg.classList.add("h-50", "animate__animated", "animate__bounce", "animate__repeat-2");
         }
+    });
+}
+
+export const adoptPet = () => {
+    document.getElementById("adopt-pet").addEventListener("click", () => {
+        let petId = Number(document.getElementById("pet-select").value);
+        const petName = document.getElementById("pet-name").value;
+        console.log(petId);
+    
+        if (petId === 15) {
+            const randomPet = petDataList[Math.floor(Math.random() * 14)];
+            petId = randomPet.id;
+        }
+    
+        const pet = petDataList.find(p => p.id === petId);
+    
+        if (petId === 0) {
+            alert("Du måste välja ett husdjur!")
+            return;
+        }
+    
+        if (petName === "") {
+            alert("Du måste ange ett namn för ditt husdjur!")
+            return;
+        }
+    
+        if (myPets.length >= maxPet) {
+            alert("Du har redan 4 husdjur!");
+            return;
+        }
+    
+        console.log(myPets);
+    
+        const newPet = new Pet(generateRandomUUID(), petName, pet.petType, pet.petImage);
+        myPets.push(newPet);
+        newPet.logActivity(`Du adopterade ${newPet.petName}!`);
+    
+        if (myPets.length > 0) {
+            noPetsCard.style.display = "none";
+            activityLogCard.style.display = "";
+        } else {
+            noPetsCard.style.display = "";
+            activityLogCard.style.display = "none";
+        }
+    
+        createPetCard(newPet);
+    
+        document.getElementById("pet-name").value = "";
+        document.getElementById("pet-select").selectedIndex = 0;
+        const petImg = document.getElementById("pet-img");
+        petImg.classList.add("h-50", "animate__animated", "animate__bounce", "animate__repeat-2");
+        petImg.src = "/assets/img/egg.svg"
+    
+        const adoptButton = document.getElementById("adopt-pet");
+        adoptButton.style.display = "none";
+        adoptButton.textContent = "";
+        document.getElementById("pet-name").style.display = "none";
     });
 }
 
