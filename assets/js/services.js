@@ -3,6 +3,7 @@ import { Pet } from "./Pet.js";
 export const maxPet = 4;
 export const startStats = 50;
 export const maxStats = 100;
+export const statsTimer = 10000; // 10 sek
 export let myPets = []; 
 
 export const noPetsCard = document.getElementById("no-pets");

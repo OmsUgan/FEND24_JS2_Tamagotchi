@@ -1,4 +1,4 @@
-import { startStats, maxStats, getProgressBarColor, myPets } from "./services.js";
+import { startStats, maxStats, statsTimer, getProgressBarColor, myPets } from "./services.js";
 export class Pet {
     constructor(id, name, petType, imageUrl) {
         this.id = id;
@@ -8,7 +8,7 @@ export class Pet {
         this.petEnergy = startStats;
         this.petFullness = startStats;
         this.petHappiness = startStats;
-        this.statsTimer = setInterval(() => this.decreaseStats(), 10000); // 10 sek
+        this.statsTimer = setInterval(() => this.decreaseStats(), statsTimer);
     }
 
     nap() {
@@ -59,7 +59,7 @@ export class Pet {
         this.petHappiness = Math.max(this.petHappiness - 15, 0);
 
         if (this.petEnergy < 30) {
-            this.logActivity(`${this.petName} är sömning!`);
+            this.logActivity(`${this.petName} är trött!`);
         }
         
         if (this.petHappiness < 30) {
