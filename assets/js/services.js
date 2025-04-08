@@ -1,4 +1,4 @@
-import { Pet } from "./classes.js";
+import { Pet } from "./Pet.js";
 
 export const maxPet = 4;
 export const startStats = 50;
