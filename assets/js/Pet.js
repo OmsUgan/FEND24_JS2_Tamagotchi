@@ -1,4 +1,4 @@
-import { startStats, getProgressBarColor, myPets } from "./services.js";
+import { startStats, maxStats, getProgressBarColor, myPets } from "./services.js";
 export class Pet {
     constructor(id, name, petType, imageUrl) {
         this.id = id;
@@ -16,7 +16,7 @@ export class Pet {
         this.petHappiness = Math.max(this.petHappiness - 10, 0);
         this.petFullness = Math.max(this.petFullness - 10, 0);
 
-        if (this.petEnergy === 100) {
+        if (this.petEnergy === maxStats) {
             this.logActivity(`${this.petName} var inte trött och ville inte vila!`);
         } else {
             this.logActivity(`Du vilade med ${this.petName}!`);
@@ -30,7 +30,7 @@ export class Pet {
         this.petFullness = Math.max(this.petFullness - 10, 0);
         this.petEnergy = Math.max(this.petEnergy - 10, 0);
 
-        if (this.petHappiness === 100) {
+        if (this.petHappiness === maxStats) {
             this.logActivity(`${this.petName} känner inte för att leka!`);
         } else {
             this.logActivity(`Du lekte med ${this.petName}!`);
@@ -44,7 +44,7 @@ export class Pet {
         this.petHappiness = Math.min(this.petHappiness + 5, 100);
         this.petEnergy = Math.max(this.petEnergy - 15, 0);
 
-        if (this.petFullness === 100) {
+        if (this.petFullness === maxStats) {
             this.logActivity(`${this.petName} är i matkoma!`);
         } else {
             this.logActivity(`Du matade ${this.petName}!`);
@@ -126,6 +126,7 @@ export class Pet {
         if (myPets.length === 0) {
             document.getElementById("no-pets").style.display = "";
             document.getElementById("activity-log").style.display = "none";
+            document.querySelector("#activity-log ul").innerHTML = "";
             document.getElementById("pet-name").style.display= "none";
         } else {
             document.getElementById("no-pets").style.display = "none";
