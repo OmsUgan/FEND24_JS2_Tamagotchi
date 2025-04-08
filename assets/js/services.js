@@ -282,7 +282,7 @@ export const petDataList = [
 },
 {
     id: 15,
-    petName: "Slumpmässig",
+    petName: "Slumpmässigt",
     petType: "Random",
     petImage: "/assets/img/egg.svg"
 }];
